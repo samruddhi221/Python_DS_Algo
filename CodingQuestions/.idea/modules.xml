@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CodingQuestions.iml" filepath="$PROJECT_DIR$/.idea/CodingQuestions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../DataStructures/.idea/DataStructures.iml" filepath="$PROJECT_DIR$/../DataStructures/.idea/DataStructures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../OOP_in_python/.idea/OOP_in_python.iml" filepath="$PROJECT_DIR$/../OOP_in_python/.idea/OOP_in_python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SortingAlgorithms/.idea/SortingAlgorithms.iml" filepath="$PROJECT_DIR$/../SortingAlgorithms/.idea/SortingAlgorithms.iml" />
+    </modules>
+  </component>
+</project>
