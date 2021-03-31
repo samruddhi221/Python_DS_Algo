@@ -6,7 +6,14 @@ class Shape:
         pass
 
     def area(self) -> float:
-        raise NotImplementedError
+        return 0.0
+
+
+class RightAngleTriangle(Shape):
+    def __init__(self, base: float, height: float):
+        self.__base = base
+        self.__height = height
+        super().__init__()
 
 
 class Circle(Shape):
@@ -51,3 +58,5 @@ if __name__ == '__main__':
     sq = Square(5.)
     rect = Rectangle(3., 2.)
     area_ = average_shape_area([c, sq, rect])
+    triangle = RightAngleTriangle(3., 4.)
+    print(triangle.area())
