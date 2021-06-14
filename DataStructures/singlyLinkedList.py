@@ -1,7 +1,7 @@
 class ListNode:
-    def __init__(self, value=0, next=None):
+    def __init__(self, value=0):
         self.val = value
-        self.next = next
+        self.next = None
 
 
 class SinglyLinkedList:
@@ -10,117 +10,120 @@ class SinglyLinkedList:
         self.len = 0
 
     def add_at_head(self, val: int) -> None:
-        new_node = ListNode(val)
-        if self.len == 0:
-            self.head = new_node
-            self.len += 1
-            return
+        if not self.head:
+            self.head = ListNode(val)
         else:
-            current_head = self.head
-            new_node.next = current_head
-            self.head = new_node
-            self.len += 1
-            return
+            newNode = ListNode(val)
+            newNode.next = self.head
+            self.head = newNode
+        self.len += 1
+        return
 
     def add_at_tail(self, val: int) -> None:
-        if self.len == 0:
+        if not self.head:
             self.add_at_head(val)
-            return
         else:
-            new_node = ListNode(val)
-            curr_head = self.head
-            while curr_head.next:
-                curr_head = curr_head.next
-            curr_head.next = new_node
+            node = self.head
+            newNode = ListNode(val)
+            while node.next:
+                node = node.next
+            node.next = newNode
             self.len += 1
-            return
+        return
 
-    def add_at_index(self, index: int, val: int) -> None:       # index starts from 0
-        if (self.len > index) or (index < 0):
-            print("Index out of bounds")
+    def add_at_index(self, index: int, val: int) -> None:  # index starts from 0
+        if index > self.len:
             return
-        elif self.len == 0 and index == 0:
+        if index == 0:
             self.add_at_head(val)
-            return
-        elif self.len > 0 and self.len == index:
+        elif index == (self.len):
             self.add_at_tail(val)
-            return
         else:
-            new_node = ListNode(val)
+            i = 0
             prev = self.head
-            count = 0
-            while count < index - 1:
+            newNode = ListNode(val)
+            while i < index - 1:
                 prev = prev.next
-                count += 1
-            new_node.next = prev.next
-            prev.next = new_node
+                i += 1
+            newNode.next = prev.next
+            prev.next = newNode
             self.len += 1
-            return
+        return
 
     def delete_at_index(self, index: int) -> None:
-        if index >= self.len or index < 0:
-            print("Invalid index")
+        if not self.head:
             return
-        elif index == 0:            # deleting a head
-            if self.len == 1:
-                self.head = None
-            else:
-                curr_node = self.head
-                self.head = curr_node.next
-                curr_node = None
-            self.len -= 1
+        if index < 0 or index >= self.len:
             return
+        if index == 0:
+            self.head = self.head.next  # How to deallocate memory?
+        elif index == self.len - 1:
+            node = self.head
+            while node.next.next:
+                node = node.next
+            node.next = None
         else:
-            count = 0
-            curr_node = self.head
-            prev_node = ListNode
-            prev_node.next = curr_node
-            while count < index:
-                prev_node = curr_node
-                curr_node = curr_node.next
-                count += 1
-            prev_node.next = curr_node.next
-            curr_node = None
-            self.len -= 1
-            return
+            prev = ListNode()
+            node = self.head
+            prev.next = node
+
+            while index > 0:
+                prev = prev.next
+                node = node.next
+                index -= 1
+            prev.next = node.next
+            node.next = None
+        self.len -= 1
+        return
 
     def search(self, val: int) -> bool:
-        curr_head = self.head
-        while curr_head:
-            if curr_head.val == val:
-                return True
-            curr_head = curr_head.next
-        return False
+        if self.head:
+            node = self.head
+            while node:
+                if node.val == val:
+                    return True
+                else:
+                    node = node.next
+            return False
+        else:
+            return False
 
     def print_linked_list(self) -> list:
-        linked_list = []
-        curr_node = self.head
-        while curr_node:
-            linked_list.append(curr_node.val)
-            curr_node = curr_node.next
-        return linked_list
+        ll = []
+        node = self.head
+        while node:
+            ll.append(node.val)
+            node = node.next
+        return ll
 
-    def reverse(self) -> None:
+    def reverse_recursive(self) -> None:
         self.head = self.__in_place_reverse_recursive(self.head)
         return
 
+    def reverse_iterative(self) -> None:
+        self.head = self.__in_place_reverse_iterative(self.head)
+        return
+
     def __in_place_reverse_recursive(self, head: ListNode) -> ListNode:
-        if not head or head.next:
+        if head is None or head.next is None:
             return head
-        prev = self.in_place_reverse_recursive(head.next)
+        prev = self.__in_place_reverse_recursive(head.next)
         head.next.next = head
         head.next = None
         return prev
 
     def __in_place_reverse_iterative(self, head: ListNode) -> ListNode:
-        prev_node = None
-        curr_node = head
-        while curr_node:
-            temp_node = curr_node.next
-            curr_node.next = prev_node
-            prev_node = curr_node
-            curr_node = temp_node
-        return prev_node
+        prev = None
+        curr = self.head
+        next = None
+
+        while curr:
+            next_ = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_
+        head = prev
+        return head
 
     def __str__(self):
         return f'{self.print_linked_list()}'
@@ -136,5 +139,12 @@ if __name__ == '__main__':
     sll.delete_at_index(1)
     print(sll)
     sll.add_at_index(2, 7)
-    sll.reverse()
+    print(sll)
+    sll.add_at_index(1, 6)
+    print(sll)
+    sll.delete_at_index(1)
+    print(sll)
+    sll.reverse_recursive()
+    print(sll)
+    sll.reverse_iterative()
     print(sll)
