@@ -9,7 +9,6 @@ def partition(array, start, end) -> int:
     """
     pivot = array[end]
     pivot_index = start
-
     for i in range(start, end+1):
         if array[i] < pivot:
             array[pivot_index], array[i] = array[i], array[pivot_index]
