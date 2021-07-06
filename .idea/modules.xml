@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Python_DS_Algo.iml" filepath="$PROJECT_DIR$/.idea/Python_DS_Algo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pythonWebDev/.idea/pythonWebDev.iml" filepath="$PROJECT_DIR$/../pythonWebDev/.idea/pythonWebDev.iml" />
     </modules>
   </component>
 </project>
