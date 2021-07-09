@@ -78,7 +78,7 @@ class Customer:
 
 
 class AccountManager:
-    def __init__(self, customers: List[Customer]):
+    def __init__(self, customers: List[Customer]) -> object:
         self.customer_map = {}              # customer_name: customer_object
         for customer in customers:
             self.customer_map[customer.name] = customer
@@ -104,3 +104,4 @@ print(account_manager.generate_bill("A"))
 print(account_manager.generate_bill("B"))
 print(account_manager.generate_bill("C"))
 
+accountManager = AccountManager([customer1])
