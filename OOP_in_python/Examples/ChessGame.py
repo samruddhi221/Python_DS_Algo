@@ -122,7 +122,7 @@ class Board:
     def can_move(self, player: Side, from_position: str, to_position: str) -> bool:
         pass
 
-    def make_move(self, from_position: str, to_position: str) -> None:
+    def make_move(self, player: Side, from_position: str, to_position: str) -> None:
         pass
 
 class Logger:
@@ -132,11 +132,10 @@ class Logger:
 
 class ChessGame:
     def __init__(self):
-        self.player1 = Player(Side.white)
-        self.player2 = Player(Side.black)
         self.board = Board()
         self.logger = Logger()
         self.active_player = Side.white
+        self.player = Player(self.active_player)
         self.winner = None
 
     def run_game(self):
@@ -144,10 +143,20 @@ class ChessGame:
         while not self.board.finished:
             if self.board.can_move(self.active_player, from_pos, to_pos):
                 self.board.make_move(from_pos, to_pos)
+                self.board.check_terminating_conditions()
+                self.player.update_score()
+                self.toggle_player()
+
+    def toggle_player(self) -> None:
+        if self.active_player == Side.white:
+            self.active_player = Side.black
+        else:
+            self.active_player = Side.white
 
 
 
 if __name__ == "__main__":
+    pass
 
 
 

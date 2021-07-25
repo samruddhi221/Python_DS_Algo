@@ -5,7 +5,7 @@ class TreeNode:
         self.right = right
 
 
-class BinaryTree:
+class BinarySearchTree:
     def __init__(self):
         self.__root = None
 
@@ -173,7 +173,7 @@ class BinaryTree:
 
 
 if __name__ == '__main__':
-    tree = BinaryTree()
+    tree = BinarySearchTree()
     tree.insert_node(5)
     tree.insert_node(3)
     tree.insert_node(4)
